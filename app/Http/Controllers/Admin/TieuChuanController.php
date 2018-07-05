@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\TieuChuan;
+use App\Tieuchuan;
 
 class TieuChuanController extends Controller
 {
@@ -15,7 +15,7 @@ class TieuChuanController extends Controller
      */
     public function index()
     {
-        $tieuchuans = TieuChuan::orderBy('id','DESC')->get();
+        $tieuchuans = Tieuchuan::orderBy('id','DESC')->get();
 
         return view('admin.tieuchuan.list', compact('tieuchuans'));
     }
@@ -40,7 +40,7 @@ class TieuChuanController extends Controller
     {
         try {
 
-            $tieuchuan = new TieuChuan();
+            $tieuchuan = new Tieuchuan();
             $tieuchuan->ten_tieu_chuan = $request->txtTenTc;
             $tieuchuan->save();
 
@@ -72,7 +72,7 @@ class TieuChuanController extends Controller
     public function edit($id)
     {
         try {
-            $tieuchuan = TieuChuan::findOrFail($id);
+            $tieuchuan = Tieuchuan::findOrFail($id);
 
             return view('admin.tieuchuan.edit', compact('tieuchuan'));
         } catch (Exception $ex) {
@@ -92,7 +92,7 @@ class TieuChuanController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $tieuchuan = TieuChuan::findOrFail($id);
+            $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->ten_tieu_chuan = $request->txtTenTc;
             $tieuchuan->save();
 
@@ -114,7 +114,7 @@ class TieuChuanController extends Controller
     {
         try {
             $id = $id;
-            $tieuchuan = TieuChuan::findOrFail($id);
+            $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->delete();
 
             return redirect()->route('tieuchuan.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);

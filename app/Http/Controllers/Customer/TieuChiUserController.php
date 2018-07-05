@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\TieuChuan;
-use App\TieuChi;
-use App\MinhChung;
+use App\Tieuchuan;
+use App\Tieuchi;
+use App\Minhchung;
 
 class TieuChiUserController extends Controller
 {
@@ -17,7 +17,7 @@ class TieuChiUserController extends Controller
      */
     public function index()
     {
-        $tieuchis = TieuChi::orderBy('id', 'DESC')->get();
+        $tieuchis = Tieuchi::orderBy('id', 'DESC')->get();
 
         return view('customer.tieuchi.list', compact('tieuchis'));
     }
@@ -30,9 +30,9 @@ class TieuChiUserController extends Controller
     public function create()
     {
         try {
-            $tieuchuans = TieuChuan::all();
-            $tieuchis = TieuChi::all();
-            $minhchungs = MinhChung::all();
+            $tieuchuans = Tieuchuan::all();
+            $tieuchis = Tieuchi::all();
+            $minhchungs = Minhchung::all();
 
             return view('customer.tieuchi.add', compact([
                 'tieuchuans',
@@ -55,7 +55,7 @@ class TieuChiUserController extends Controller
     {
         try{
             $id = $request->sltTenTieuChi;
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->mo_ta = $request->treaMoTa;
             $tieuchi->diem_manh = $request->treaDiemManh;
             $tieuchi->nhung_ton_tai = $request->treaTonTai;
@@ -90,10 +90,10 @@ class TieuChiUserController extends Controller
     public function edit($id)
     {
         try {
-            $tieuchuans = TieuChuan::all();
-            $tieuchis = TieuChi::all();
-            $minhchungs = MinhChung::all();
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchuans = Tieuchuan::all();
+            $tieuchis = Tieuchi::all();
+            $minhchungs = Minhchung::all();
+            $tieuchi = Tieuchi::findOrFail($id);
 
             return view('customer.tieuchi.edit', compact([
                 'tieuchi',
@@ -118,7 +118,7 @@ class TieuChiUserController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->mo_ta = $request->treaMoTa;
             $tieuchi->diem_manh = $request->treaDiemManh;
             $tieuchi->nhung_ton_tai = $request->treaTonTai;
@@ -142,7 +142,7 @@ class TieuChiUserController extends Controller
     public function destroy($id)
     {
         try {
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->delete();
 
             return redirect()->route('tieuchi-user.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);

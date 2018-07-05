@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\MinhChung;
-use App\TieuChuan;
-use App\TieuChi;
+use App\Minhchung;
+use App\Tieuchuan;
+use App\Tieuchi;
 use Illuminate\Support\Collection;
 use Exception;
 use Excel;
@@ -26,7 +26,7 @@ class MinhchungController extends Controller
      */
     public function index()
     {
-        $minhchungs = MinhChung::orderBy('id', 'DESC')->get();
+        $minhchungs = Minhchung::orderBy('id', 'DESC')->get();
         
         return view('customer.minhchung.list', compact('minhchungs'));
     }
@@ -38,7 +38,7 @@ class MinhchungController extends Controller
      */
     public function create()
     {
-        $tieuchuans = TieuChuan::all();
+        $tieuchuans = Tieuchuan::all();
 
         return view('customer.minhchung.add', compact('tieuchuans'));
     }
@@ -53,7 +53,7 @@ class MinhchungController extends Controller
     {
         try{
             $id = 0;
-            $minhchungById = MinhChung::orderBy('id', 'DESC')->first();
+            $minhchungById = Minhchung::orderBy('id', 'DESC')->first();
 
             if($minhchungById == null)
             {
@@ -64,7 +64,7 @@ class MinhchungController extends Controller
             }  
 
             $maMC = '[H1.'.$request->sltTenTc.'.'.$request->sltTenTieuChi.'.'.$id.']';
-            $minhchung = new MinhChung();
+            $minhchung = new Minhchung();
             $minhchung->ten_minh_chung = $request->txtTenMC;
             $minhchung->ma_mc = $maMC;
             $minhchung->tieuchi_id = $request->sltTenTieuChi;
@@ -96,9 +96,10 @@ class MinhchungController extends Controller
      */
     public function edit($id)
     {
-        $tieuchuans = TieuChuan::all();
-        $tieuchis = TieuChi::all();
-        $minhchung = MinhChung::findOrFail($id);
+        $tieuchuans = Tieuchuan::all();
+        $minhchung = Minhchung::findOrFail($id);
+        $tieuchuanId = $minhchung->tieuchi->tieuchuan_id;
+        $tieuchis = Tieuchi::where('tieuchuan_id', $tieuchuanId)->get();
 
         return view('customer.minhchung.edit', compact([
             'minhchung',
@@ -117,7 +118,7 @@ class MinhchungController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $minhchung = MinhChung::findOrFail($id);
+            $minhchung = Minhchung::findOrFail($id);
 
             $maMC = '[H1.'.$request->sltTenTc.'.'.$request->sltTenTieuChi.'.'.$minhchung->id.']';
             $minhchung->ten_minh_chung = $request->txtTenMC;
@@ -125,7 +126,7 @@ class MinhchungController extends Controller
             $minhchung->tieuchi_id = $request->sltTenTieuChi;
             $minhchung->save();
 
-            return redirect()->route('minhchung.index')->with(['flash_level'=>'success','flash_message'=>'Thêm thành công']);
+            return redirect()->route('minhchung.index')->with(['flash_level'=>'success','flash_message'=>'Sửa thành công']);
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
@@ -141,7 +142,7 @@ class MinhchungController extends Controller
     public function destroy($id)
     {
         try {
-            $minhchung = MinhChung::findOrFail($id);
+            $minhchung = Minhchung::findOrFail($id);
             $minhchung->delete();
 
             return redirect()->route('minhchung.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);
@@ -154,7 +155,7 @@ class MinhchungController extends Controller
 
     public function getDataMinhChung()
     {
-        $minhchungs = MinhChung::with('vanbans')
+        $minhchungs = Minhchung::with('vanbans')
                         ->get()
                         ->transform(function ($arrMinhChung) {
                             $arrMinhChung = $arrMinhChung->toArray();
