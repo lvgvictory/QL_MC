@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Vanban;
-use App\MinhChung;
+use App\Minhchung;
 use Carbon\Carbon;
 
 class VanBanController extends Controller
@@ -29,7 +29,7 @@ class VanBanController extends Controller
      */
     public function create()
     {
-        $minhchungs = MinhChung::all();
+        $minhchungs = Minhchung::all();
 
         return view('customer.vanban.add', compact('minhchungs'));
     }
@@ -85,7 +85,7 @@ class VanBanController extends Controller
      */
     public function edit($id)
     {
-        $minhchungs = MinhChung::all();
+        $minhchungs = Minhchung::all();
         $vanban = Vanban::findOrFail($id);
 
         return view('customer.vanban.edit', compact([
