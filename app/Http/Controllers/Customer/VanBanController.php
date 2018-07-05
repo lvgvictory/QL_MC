@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\VanBan;
+use App\Vanban;
 use App\MinhChung;
 use Carbon\Carbon;
 
@@ -17,7 +17,7 @@ class VanBanController extends Controller
      */
     public function index()
     {
-        $vanbans = VanBan::orderBy('id', 'DESC')->get();
+        $vanbans = Vanban::orderBy('id', 'DESC')->get();
         
         return view('customer.vanban.list', compact('vanbans'));
     }
@@ -45,7 +45,7 @@ class VanBanController extends Controller
         try {
             $file = $request->file('flDK');
             $file_Name = $file->getClientOriginalName();
-            $vanban = new VanBan();
+            $vanban = new Vanban();
 
             $vanban->so_van_ban = $request->txtSoVB;
             $vanban->ten_van_ban = $request->txtTenVB;
@@ -86,7 +86,7 @@ class VanBanController extends Controller
     public function edit($id)
     {
         $minhchungs = MinhChung::all();
-        $vanban = VanBan::findOrFail($id);
+        $vanban = Vanban::findOrFail($id);
 
         return view('customer.vanban.edit', compact([
             'minhchungs',
@@ -104,7 +104,7 @@ class VanBanController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $vanban = VanBan::findOrFail($id);
+            $vanban = Vanban::findOrFail($id);
             $file = $request->file('flDKnew');
             $file_name = '';
 
@@ -112,15 +112,15 @@ class VanBanController extends Controller
                 $file_name = $vanban->file;
             } else {
                 $file_name = $file->getClientOriginalName();
+                $file->move('uploads', $file_name);
             }
-            
+
             $vanban->so_van_ban = $request->txtSoVB;
             $vanban->ten_van_ban = $request->txtTenVB;
             $vanban->noi_ban_hanh = $request->txtNoiBH;
             $vanban->ngay_thang_nam = $request->txtNgayBH;
             $vanban->file = $file_name;
             $vanban->minhchung_id = $request->sltTenMC;
-            $file->move('uploads', $file_name);
 
             $vanban->save();
 
@@ -142,7 +142,7 @@ class VanBanController extends Controller
     public function destroy($id)
     {
         try {
-            $vanban = VanBan::findOrFail($id);
+            $vanban = Vanban::findOrFail($id);
             $vanban->delete();
 
             return redirect()->route('vanban.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);

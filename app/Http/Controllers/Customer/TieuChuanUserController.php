@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\TieuChuan;
+use App\Tieuchuan;
 
 class TieuChuanUserController extends Controller
 {
@@ -15,7 +15,7 @@ class TieuChuanUserController extends Controller
      */
     public function index()
     {
-        $tieuchuans = TieuChuan::orderBy('id','DESC')->get();
+        $tieuchuans = Tieuchuan::orderBy('id','DESC')->get();
 
         return view('customer.tieuchuan.list', compact('tieuchuans'));
     }
@@ -27,7 +27,7 @@ class TieuChuanUserController extends Controller
      */
     public function create()
     {
-        $tieuchuans = TieuChuan::all();
+        $tieuchuans = Tieuchuan::all();
 
         return view('customer.tieuchuan.add', compact('tieuchuans'));
     }
@@ -41,7 +41,7 @@ class TieuChuanUserController extends Controller
     public function store(Request $request)
     {
         try {
-            $tieuchuan = TieuChuan::findOrFail($request->sltTenTc);
+            $tieuchuan = Tieuchuan::findOrFail($request->sltTenTc);
             $tieuchuan->mo_dau = $request->treaMoDau;
             $tieuchuan->ket_luan = $request->treaKetLuan;
 
@@ -74,8 +74,8 @@ class TieuChuanUserController extends Controller
      */
     public function edit($id)
     {
-        $tieuchuan = TieuChuan::findOrFail($id);
-        $tieuchuans = TieuChuan::all();
+        $tieuchuan = Tieuchuan::findOrFail($id);
+        $tieuchuans = Tieuchuan::all();
 
         return view('customer.tieuchuan.edit', compact([
             'tieuchuan',
@@ -93,7 +93,7 @@ class TieuChuanUserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $tieuchuan = TieuChuan::findOrFail($id);
+            $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->mo_dau = $request->treaMoDau;
             $tieuchuan->ket_luan = $request->treaKetLuan;
 
@@ -116,7 +116,7 @@ class TieuChuanUserController extends Controller
     public function destroy($id)
     {
         try {
-            $tieuchuan = TieuChuan::findOrFail($id);
+            $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->delete();
 
             return redirect()->route('tieuchuan-user.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);

@@ -68,7 +68,7 @@
 
                                 <div class="form-group ">
                                     <label for="phone" class="control-label col-lg-2">
-                                        Số điện thoại  
+                                        Quyền  
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-lg-10">

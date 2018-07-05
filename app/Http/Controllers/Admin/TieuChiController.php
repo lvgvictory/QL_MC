@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\TieuChuan;
-use App\TieuChi;
+use App\Tieuchuan;
+use App\Tieuchi;
 
 class TieuChiController extends Controller
 {
@@ -16,7 +16,7 @@ class TieuChiController extends Controller
      */
     public function index()
     {
-        $tieuchis = TieuChi::with('tieuchuan')->get();
+        $tieuchis = Tieuchi::with('tieuchuan')->orderBy('id','DESC')->get();
         
         return view('admin.tieuchi.list', compact('tieuchis'));
     }
@@ -28,7 +28,7 @@ class TieuChiController extends Controller
      */
     public function create()
     {
-        $tieuchuans = TieuChuan::all();
+        $tieuchuans = Tieuchuan::all();
 
         return view('admin.tieuchi.add', compact('tieuchuans'));
     }
@@ -43,7 +43,7 @@ class TieuChiController extends Controller
     {
         try {
 
-            $tieuchi = new TieuChi();
+            $tieuchi = new Tieuchi();
             $tieuchi->ten_tieu_chi = $request->txtTenTc;
             $tieuchi->tieuchuan_id = $request->sltTenTc;
             $tieuchi->user_id = 1;
@@ -77,8 +77,8 @@ class TieuChiController extends Controller
     public function edit($id)
     {
         try {
-            $tieuchi = TieuChi::findOrFail($id);
-            $tieuchuans = TieuChuan::all();
+            $tieuchi = Tieuchi::findOrFail($id);
+            $tieuchuans = Tieuchuan::all();
 
             return view('admin.tieuchi.edit', compact([
                 'tieuchi',
@@ -101,7 +101,7 @@ class TieuChiController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->ten_tieu_chi = $request->txtTenTc;
             $tieuchi->tieuchuan_id = $request->sltTenTc;
             $tieuchi->save();
@@ -123,7 +123,7 @@ class TieuChiController extends Controller
     public function destroy($id)
     {
         try {
-            $tieuchi = TieuChi::findOrFail($id);
+            $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->delete();
 
             return redirect()->route('tieuchi.index')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);

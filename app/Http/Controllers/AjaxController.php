@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TieuChi;
+use App\Tieuchi;
 
 class AjaxController extends Controller
 {
@@ -12,7 +12,7 @@ class AjaxController extends Controller
         try{
             $id = $resquest->id;
             
-            $tieuchis = TieuChi::where('tieuchuan_id', $id)->get();
+            $tieuchis = Tieuchi::where('tieuchuan_id', $id)->get();
 
             $result = '';
 

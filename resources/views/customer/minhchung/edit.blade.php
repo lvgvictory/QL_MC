@@ -139,7 +139,7 @@
                 });
             }
 
-            getTieuChi();
+            // getTieuChi();
 
             $('#sltTenTc').change(function() {
                 getTieuChi();
