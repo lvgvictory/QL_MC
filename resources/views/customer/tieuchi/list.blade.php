@@ -68,11 +68,13 @@
                                                     <a style="float: left; margin-right: 3px;" href="{{route('tieuchi-user.edit', $tieuchi->id)}}" class="btn btn-warning">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </a>
-                                                    <form method="POST" action="{{route('tieuchi-user.destroy', $tieuchi->id)}}">
-                                                        {{ method_field("DELETE")}}
-                                                        {{ csrf_field() }}
-                                                        <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                    </form>
+                                                    @if(Auth::user()->role == 1)
+                                                        <form method="POST" action="{{route('tieuchi-user.destroy', $tieuchi->id)}}">
+                                                            {{ method_field("DELETE")}}
+                                                            {{ csrf_field() }}
+                                                            <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>

@@ -134,13 +134,13 @@
                                     <div class="col-lg-10">
                                       <div class="radio">
                                         <label>
-                                            <input type="radio" name="rdDG" value="1" checked>
+                                            <input type="radio" name="rdDG" value="1">
                                             Đạt
                                         </label>
                                       </div>
                                       <div class="radio">
                                         <label>
-                                            <input type="radio" name="rdDG" value="0">
+                                            <input type="radio" name="rdDG" value="0" checked>
                                             Không đạt
                                         </label>
                                       </div>

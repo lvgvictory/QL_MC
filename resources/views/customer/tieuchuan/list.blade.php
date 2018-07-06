@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> TIÊU CHUẨN</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="{{route('tieuchuan.index')}}">Thống Kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('tieuchuan-user.index')}}">Tiêu Chuẩn</a></li>
                     <li><i class="fa fa-files-o"></i>Danh Sách</li>
                 </ol>
             </div>
@@ -50,16 +50,20 @@
                                                 <a href="{{route('tieuchuan-user.show', $tieuchuan->id)}}">Chi tiết</a>
                                             </td>
                                             <td>
+                                                
                                                 <div>
                                                     <a style="float: left; margin-right: 10px;" href="{{route('tieuchuan-user.edit', $tieuchuan->id)}}" class="btn btn-warning">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </a>
-                                                    <form method="POST" action="{{route('tieuchuan-user.destroy', $tieuchuan->id)}}">
-                                                        {{ method_field("DELETE")}}
-                                                        {{ csrf_field() }}
-                                                        <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                    </form>
+                                                    @if(Auth::user()->role == 1)
+                                                        <form method="POST" action="{{route('tieuchuan-user.destroy', $tieuchuan->id)}}">
+                                                            {{ method_field("DELETE")}}
+                                                            {{ csrf_field() }}
+                                                            <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </div>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
