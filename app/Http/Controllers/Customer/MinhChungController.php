@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use PHPExcel_Cell as ExcelCell;
 
-class MinhchungController extends Controller
+class MinhChungController extends Controller
 {
     protected $data;
     const SHEET_NAME = 'sheet';

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tieuchuan;
 use App\Tieuchi;
+use Auth;
 
 class TieuChiController extends Controller
 {
@@ -46,7 +47,7 @@ class TieuChiController extends Controller
             $tieuchi = new Tieuchi();
             $tieuchi->ten_tieu_chi = $request->txtTenTc;
             $tieuchi->tieuchuan_id = $request->sltTenTc;
-            $tieuchi->user_id = 1;
+            $tieuchi->user_id = Auth::user()->id;
             $tieuchi->save();
 
             return redirect()->route('tieuchi.index')->with(['flash_level'=>'success','flash_message'=>'Thêm thành công']);
@@ -104,6 +105,7 @@ class TieuChiController extends Controller
             $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->ten_tieu_chi = $request->txtTenTc;
             $tieuchi->tieuchuan_id = $request->sltTenTc;
+            $tieuchi->user_id = Auth::user()->id;
             $tieuchi->save();
 
             return redirect()->route('tieuchi.index')->with(['flash_level'=>'success','flash_message'=>'Sửa thành công']);
