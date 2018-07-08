@@ -53,6 +53,24 @@ class TieuChiUserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, 
+            [
+                'sltTenTc' => 'required',
+                'sltTenTieuChi' => 'required',
+                'treaMoTa' => 'required',
+                'treaDiemManh' => 'required',
+                'treaTonTai' => 'required',
+                'treaCaiTien' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'sltTenTieuChi.required' => 'Vui lòng chọn tiêu chí',
+                'treaMoTa.required' => 'Vui lòng nhập mô tả',
+                'treaDiemManh.required' => 'Vui lòng nhập điểm mạnh',
+                'treaTonTai.required' => 'Vui lòng nhập những tồn tại',
+                'treaCaiTien.required' => 'Vui lòng nhập kế hoạch cải tiến'
+            ]
+        );
         try{
             $id = $request->sltTenTieuChi;
             $tieuchi = Tieuchi::findOrFail($id);
@@ -63,7 +81,7 @@ class TieuChiUserController extends Controller
             $tieuchi->tu_danh_gia = $request->rdDG;
             $tieuchi->save();
 
-            return redirect()->route('tieuchi-user.index')->with(['flash_level'=>'success','flash_message'=>'Thêm thành công']);
+            return redirect()->route('tieuchi-user.index')->with(['flash_level'=>'success','flash_message'=>'Viết bài thành công']);
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
@@ -78,7 +96,14 @@ class TieuChiUserController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $tieuchi = Tieuchi::findOrFail($id);
+
+            return view('customer.tieuchi.detail', compact('tieuchi'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+        }
     }
 
     /**
@@ -117,6 +142,20 @@ class TieuChiUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'treaMoTa' => 'required',
+                'treaDiemManh' => 'required',
+                'treaTonTai' => 'required',
+                'treaCaiTien' => 'required'
+            ],
+            [
+                'treaMoTa.required' => 'Vui lòng nhập mô tả',
+                'treaDiemManh.required' => 'Vui lòng nhập điểm mạnh',
+                'treaTonTai.required' => 'Vui lòng nhập những tồn tại',
+                'treaCaiTien.required' => 'Vui lòng nhập kế hoạch cải tiến'
+            ]
+        );
         try{
             $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->mo_ta = $request->treaMoTa;

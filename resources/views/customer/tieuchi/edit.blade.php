@@ -187,7 +187,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $("div.alert").delay(3000).slideUp();
+            $("div.alert").delay(10000).slideUp();
 
             function getTieuChi() {
                 var id = $('#sltTenTc').val();

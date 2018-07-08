@@ -7,10 +7,10 @@ use App\Tieuchi;
 
 class AjaxController extends Controller
 {
-    public function getTieuChi(Request $resquest)
+    public function getTieuChi(Request $request)
     {
         try{
-            $id = $resquest->id;
+            $id = $request->id;
             
             $tieuchis = Tieuchi::where('tieuchuan_id', $id)->get();
 
@@ -23,6 +23,20 @@ class AjaxController extends Controller
             }
 
             return $result;
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+        }
+    }
+
+    public function getDataTieuChi(Request $request1)
+    {
+        try{
+            $id = $request1->id;
+            
+            $tieuchi = Tieuchi::findOrFail($id);
+
+            return response()->json($tieuchi);
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());

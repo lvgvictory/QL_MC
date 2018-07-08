@@ -38,6 +38,15 @@ class TieuChuanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, 
+            [
+                'txtTenTc' => 'required',
+            ],
+            [
+                'txtTenTc.required' => 'Vui lòng nhập tên tiêu chuẩn',                
+            ]
+        );
+
         try {
 
             $tieuchuan = new Tieuchuan();
@@ -60,7 +69,15 @@ class TieuChuanController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $tieuchuan = Tieuchuan::findOrFail($id);
+
+            return view('admin.tieuchuan.detail', compact('tieuchuan'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            // return redirect()->back()->with('message', trans('admin.product.error_delete'));
+        }
     }
 
     /**
@@ -91,6 +108,14 @@ class TieuChuanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'txtTenTc' => 'required',
+            ],
+            [
+                'txtTenTc.required' => 'Vui lòng nhập tên tiêu chuẩn',                
+            ]
+        );
         try {
             $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->ten_tieu_chuan = $request->txtTenTc;

@@ -40,6 +40,19 @@ class TieuChuanUserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, 
+            [
+                'sltTenTc' => 'required',
+                'treaMoDau' => 'required',
+                'treaKetLuan' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'treaMoDau.required' => 'Vui lòng nhập mở đầu',
+                'treaKetLuan.required' => 'Vui lòng nhập kết luận'
+                
+            ]
+        );
         try {
             $tieuchuan = Tieuchuan::findOrFail($request->sltTenTc);
             $tieuchuan->mo_dau = $request->treaMoDau;
@@ -63,7 +76,15 @@ class TieuChuanUserController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $tieuchuan = Tieuchuan::findOrFail($id);
+
+            return view('customer.tieuchuan.detail', compact('tieuchuan'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            // return redirect()->back()->with('message', trans('admin.product.error_delete'));
+        }
     }
 
     /**
@@ -92,6 +113,19 @@ class TieuChuanUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'sltTenTc' => 'required',
+                'treaMoDau' => 'required',
+                'treaKetLuan' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'treaMoDau.required' => 'Vui lòng nhập mở đầu',
+                'treaKetLuan.required' => 'Vui lòng nhập kết luận'
+                
+            ]
+        );
         try {
             $tieuchuan = Tieuchuan::findOrFail($id);
             $tieuchuan->mo_dau = $request->treaMoDau;

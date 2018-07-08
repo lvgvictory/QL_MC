@@ -20,7 +20,7 @@ class CreateTieuchisTable extends Migration
             $table->text('diem_manh')->nullable();
             $table->text('nhung_ton_tai')->nullable();
             $table->text('ke_hoach_cai_tien')->nullable();
-            $table->tinyInteger('tu_danh_gia')->default(1);
+            $table->tinyInteger('tu_danh_gia')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->unsignedInteger('tieuchuan_id');
             $table->unsignedInteger('user_id');

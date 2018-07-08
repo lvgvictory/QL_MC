@@ -60,4 +60,23 @@ class UserController extends Controller
             Log::error($ex->getMessage());
         }
     }
+
+    public function getRole(User $user)
+    {
+        return view('customer.user.role', compact('user'));
+    }
+
+    public function postRole(Request $request, User $user)
+    {
+        try {
+            $role = $request->sltQuyen;
+            $user->role = $role;
+            $user->save();
+
+            return redirect()->route('user.index')->with(['flash_level'=>'success','flash_message'=>'Cập nhật thành công']);
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+        }
+    }
 }

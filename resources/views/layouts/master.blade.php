@@ -38,6 +38,12 @@
     <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
     <link href="css/datepicker.css" rel="stylesheet">
+    <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="js/ckfinder/ckfinder.js"></script>
+    {{-- <script type="text/javascript">
+        var baseURL = "{!!url('/')!!}";
+    </script>
+    <script type="text/javascript" src="js/myCkeditor.js"></script> --}}
     @yield('style')
     <!-- =======================================================
         Theme Name: NiceAdmin
@@ -105,7 +111,7 @@
     <script src="js/gdp-data.js"></script>
     <script src="js/morris.min.js"></script>
     <script src="js/sparklines.js"></script>
-    <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+    {{-- <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script> --}}
     <script src="js/charts.js"></script>
     <script src="js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.min.js"></script>

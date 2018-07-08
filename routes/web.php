@@ -11,8 +11,8 @@
 |
 */
 Route::get('admin', [
-	'as' => 'admin',
-	'uses' => 'Admin\AdminController@getIndex'
+    'as' => 'admin',
+    'uses' => 'Admin\AdminController@getIndex'
 ]);
 
 Route::resource('admin/tieuchuan', 'Admin\TieuChuanController');
@@ -38,8 +38,8 @@ Route::get('vanban/download/{fileName}', [
 ]);
 
 Route::get('ajax-tieuchi', [
-	'as' => 'ajax-tieuchi',
-	'uses' => 'AjaxController@getTieuChi'
+    'as' => 'ajax-tieuchi',
+    'uses' => 'AjaxController@getTieuChi'
 ]);
 
 Auth::routes();
@@ -74,4 +74,19 @@ Route::get('admin/user/{user}', [
 Route::get('download-tieuchuan/{id}', [
     'as' => 'download-tieuchuan',
     'uses' => 'Admin\AdminController@downloadTieuChuan'
+]);
+
+Route::get('admin/quyen/{user}', [
+    'as' => 'user-role',
+    'uses' => 'UserController@getRole'
+]);
+
+Route::post('admin/quyen/{user}', [
+    'as' => 'user-role',
+    'uses' => 'UserController@postRole'
+]);
+
+Route::get('get-data', [
+    'as' => 'get-data',
+    'uses' => 'AjaxController@getDataTieuChi'
 ]);

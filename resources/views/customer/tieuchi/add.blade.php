@@ -96,6 +96,7 @@
                                     </label>
                                     <div class="col-sm-10">
                                         <textarea id="textarea-1" class="form-control ckeditor" name="treaMoTa" rows="6">{{old('treaMoTa')}}</textarea>
+                                        {{-- <script type="text/javascript">ckeditor("textarea-1")</script> --}}
                                     </div>
                                 </div>
 
@@ -151,7 +152,6 @@
                                 <div>
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <input type="submit" value="Lưu" class=" btn btn-primary">
-                                        <button class="btn btn-default" type="button">Cancel</button>
                                     </div>
                                 </div>
                             </form>
@@ -165,7 +165,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $("div.alert").delay(3000).slideUp();
+            $("div.alert").delay(10000).slideUp();
 
             $('#sltTenTc').change(function() {
                 var id = $(this).val();
@@ -184,9 +184,23 @@
                 });
             });
 
+            $('#sltTenTieuChi').change(function() {
+                var id = $(this).val();
+                
+                $.ajax({
+                    url: '/get-data',
+                    type: 'GET',
+                    data: {id: id},
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+
             $('#sltMinhChung').on('change', function(event) {
                 CKEDITOR.instances['textarea-1'].insertHtml(event.target.value);
             });
         });
+        
     </script>
 @endsection

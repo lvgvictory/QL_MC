@@ -47,10 +47,9 @@
                                             value="{{old('txtTenTc', isset($tieuchuan) ? $tieuchuan->ten_tieu_chuan : '')}}" 
                                             required />
                                     </div>
-                                </div>
+                                </div class="form-group ">
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <input type="submit" value="Lưu" class=" btn btn-primary">
-                                        <button class="btn btn-default" type="button">Cancel</button>
                                     </div>
                                 </div>
                             </form>
@@ -60,4 +59,11 @@
             </div>
         </div>
     </section>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $("div.alert").delay(10000).slideUp();
+        });
+    </script>
 @endsection

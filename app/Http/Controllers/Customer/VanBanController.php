@@ -74,7 +74,15 @@ class VanBanController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $vanban = Vanban::findOrFail($id);
+
+            return view('customer.vanban.detail', compact('vanban'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            // return redirect()->back()->with('message', trans('admin.product.error_delete'));
+        }
     }
 
     /**
