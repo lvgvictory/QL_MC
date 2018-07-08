@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> MINH CHỨNG</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="{{route('tieuchuan.index')}}">Thống Kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('minhchung.index')}}">Minh chứng</a></li>
                     <li><i class="fa fa-files-o"></i>Danh Sách</li>
                 </ol>
             </div>

@@ -42,6 +42,16 @@ class TieuChiController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, 
+            [
+                'sltTenTc' => 'required',
+                'txtTenTc' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'txtTenTc.required' => 'Vui lòng nhập tên tiêu chí'                
+            ]
+        );
         try {
 
             $tieuchi = new Tieuchi();
@@ -66,7 +76,14 @@ class TieuChiController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $tieuchi = Tieuchi::findOrFail($id);
+
+            return view('admin.tieuchi.detail', compact('tieuchi'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+        }
     }
 
     /**
@@ -101,6 +118,16 @@ class TieuChiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'sltTenTc' => 'required',
+                'txtTenTc' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'txtTenTc.required' => 'Vui lòng nhập tên tiêu chí'                
+            ]
+        );
         try {
             $tieuchi = Tieuchi::findOrFail($id);
             $tieuchi->ten_tieu_chi = $request->txtTenTc;

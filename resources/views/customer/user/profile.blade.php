@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group ">
+                                <div class="form-group">
                                     <label for="phone" class="control-label col-lg-2">
                                         Số điện thoại  
                                         <span class="required">*</span>
@@ -62,10 +62,9 @@
                                     </div>
                                 </div>
 
-                                <div>
+                                <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <input type="submit" value="Lưu" class=" btn btn-primary">
-                                        {{-- <button class="btn btn-default" type="button">Cancel</button> --}}
                                     </div>
                                 </div>
 

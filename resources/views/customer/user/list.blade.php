@@ -32,7 +32,7 @@
                                     <th>Email</th>
                                     <th>Địa chỉ</th>
                                     <th>Số điện thoại</th>
-                                    <th>Trạng thái</th>
+                                    {{-- <th>Trạng thái</th> --}}
                                     <th>Quyền</th>
                                     <th>Xem</th>
                                     <th>Hành động</th>
@@ -50,20 +50,31 @@
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->address}}</td>
                                             <td>{{$user->phone}}</td>
-                                            <td>
+                                           {{--  <td>
                                                 {!!$user->status === 1 
                                                     ? '<span class="label label-success">Kích hoạt</span>' 
                                                     : '<span class="label label-danger">Ẩn</span>'!!}
+                                            </td> --}}
+                                            <td>
+                                                @if (Auth::user()->email == 'lvgvictory@gmail.com')
+                                                    <a href="{{route('user-role', $user->id)}}">
+                                                        {{$user->role === 1 ? 'Quản lý' : 'Người dùng'}}
+                                                    </a>
+                                                @else
+                                                    @if($user->role === 1)
+                                                        Quản lý
+                                                    @else
+                                                        <a href="{{route('user-role', $user->id)}}">
+                                                            Người dùng
+                                                        </a>
+                                                    @endif
+                                                @endif
                                             </td>
-                                            <td>{{$user->role === 1 ? 'Quản lý' : 'người dùng'}}</td>
                                             <td>
                                                 <a href="{{route('user.show', $user->id)}}">Chi tiết</a>
                                             </td>
                                              <td>
                                                 <div>
-                                                    {{-- <a style="float: left; margin-right: 10px;" href="{{route('minhchung.edit', $user->id)}}" class="btn btn-warning">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a> --}}
                                                     @if (Auth::user()->id != $user->id && $user->role != 1)
                                                     <form method="POST" action="{{route('user.delete', $user->id)}}">
                                                         {{ method_field("DELETE")}}

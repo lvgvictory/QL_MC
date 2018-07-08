@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group ">
+                                {{-- <div class="form-group ">
                                     <label for="phone" class="control-label col-lg-2">
                                         Trạng Thái  
                                         <span class="required">*</span>
@@ -64,7 +64,7 @@
                                             type="text" 
                                             value="{{$user->status === 1 ? 'Kích hoạt' : 'Ẩn'}}" required readonly="" />
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group ">
                                     <label for="phone" class="control-label col-lg-2">

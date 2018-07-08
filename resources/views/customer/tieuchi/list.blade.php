@@ -31,7 +31,7 @@
                                     <th>Tên tiêu chí</th>
                                     <th>Tên tiêu chuẩn</th>
                                     <th>Tự đánh giá</th>
-                                    <th>Trạng thái</th>
+                                    {{-- <th>Trạng thái</th> --}}
                                     <th>Xem</th>
                                     <th>Hành động</th>
                                 </tr>
@@ -53,13 +53,13 @@
                                                     : 'Không đạt'
                                                 !!}
                                                 </td>
-                                            <td>
+                                            {{-- <td>
                                                 {!!
                                                     $tieuchi->status == 1 
                                                     ? '<span class="label label-success">Hiện</span>' 
                                                     : '<span class="label label-warning">Ẩn</span>'
                                                 !!}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 <a href="{{route('tieuchi-user.show', $tieuchi->id)}}">Chi tiết</a>
                                             </td>

@@ -85,7 +85,15 @@ class MinhChungController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $minhchung = Minhchung::findOrFail($id);
+
+            return view('customer.minhchung.detail', compact('minhchung'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            // return redirect()->back()->with('message', trans('admin.product.error_delete'));
+        }
     }
 
     /**
@@ -168,17 +176,42 @@ class MinhChungController extends Controller
 
     protected function transformExportMinhChung($arrMinhChung)
     {
-        $vanban = $arrMinhChung['vanbans'][0];
+        // $tenVanBan = $this->getContentVanBan($arrMinhChung['vanbans'], 'ten_van_ban');
+        // $soVanBan = $this->getContentVanBan($arrMinhChung['vanbans'], 'so_van_ban');
+        // $noiBanHanh = $this->getContentVanBan($arrMinhChung['vanbans'], 'noi_ban_hanh');
+        // $ngayThangNam = $this->getContentVanBan($arrMinhChung['vanbans'], 'ngay_thang_nam');
+
+        // return [
+        //     'ma_mc' => $arrMinhChung['ma_mc'],
+        //     'ten_minh_chung' => $arrMinhChung['ten_minh_chung'],
+        //     'ten_van_ban' => $tenVanBan,
+        //     'so_van_ban' =>  $soVanBan,
+        //     'noi_ban_hanh' =>  $noiBanHanh,
+        //     'ngay_thang_nam' =>  $ngayThangNam,
+        // ];
+
+        $vanban = $arrMinhChung['vanbans'] == [] ? [] : $arrMinhChung['vanbans'][0];
 
         return [
             'ma_mc' => $arrMinhChung['ma_mc'],
             'ten_minh_chung' => $arrMinhChung['ten_minh_chung'],
-            'ten_van_ban' => $vanban['ten_van_ban'],
-            'so_van_ban' =>  $vanban['so_van_ban'],
-            'noi_ban_hanh' =>  $vanban['noi_ban_hanh'],
-            'ngay_thang_nam' =>  $vanban['ngay_thang_nam'],
+            'ten_van_ban' => $vanban != [] ? $vanban['ten_van_ban'] : '',
+            'so_van_ban' =>  $vanban != [] ? $vanban['so_van_ban'] : '',
+            'noi_ban_hanh' =>  $vanban != [] ? $vanban['noi_ban_hanh'] : '',
+            'ngay_thang_nam' =>  $vanban != [] ? $vanban['ngay_thang_nam'] : '',
         ];
     }
+
+    // protected function getContentVanBan($arr, $str)
+    // {
+    //     $content = '';
+    //     foreach ($arr as $item) {
+    //         $content .= $item[$str] . "\n";
+    //     }
+    //     $content = trim($content, '"\n"');
+
+    //     return $content;
+    // }
 
    public function exportMinhChung()
     {
