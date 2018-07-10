@@ -48,7 +48,7 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" href="{{route('user.index')}}"> Danh Sách</a></li>
-                        <li><a class="" href="{{route('register')}}"> Tạo Tài Khoản</a></li>
+                        <li><a class="" href="{{route('dangky')}}"> Tạo Tài Khoản</a></li>
                     </ul>
                 </li>
                 

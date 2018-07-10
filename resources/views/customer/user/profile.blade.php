@@ -2,6 +2,7 @@
 @section('content')
     <section class="wrapper">
         <div class="row">
+
             <div class="col-lg-12">
              @if(count($errors) > 0)
                 <div class="alert alert-danger">
@@ -11,8 +12,9 @@
                         @endforeach
                     </ul>
                 </div>
+             @endif
             </div>
-            @endif
+
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">

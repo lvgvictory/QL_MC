@@ -237,11 +237,9 @@
                 </a>
         <ul class="dropdown-menu extended logout">
             <div class="log-arrow-up"></div>
-            @if(Auth::check() && Auth::user()->role == 1)
-                <li>
-                    <a href="{{route('admin')}}"><i class="fa fa-cog"></i> Trang quản lý</a>
-                </li>
-            @endif
+            <li>
+                <a href="{{route('change-password')}}"><i class="fa fa-cog"></i> Đổi mật khẩu</a>
+            </li>
             <li class="eborder-top">
                 <a href="{{ route('profile') }}"><i class="icon_profile"></i> Hồ sơ </a>
             </li>

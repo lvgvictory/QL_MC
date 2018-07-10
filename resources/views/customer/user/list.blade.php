@@ -64,9 +64,13 @@
                                                     @if($user->role === 1)
                                                         Quản lý
                                                     @else
-                                                        <a href="{{route('user-role', $user->id)}}">
+                                                        @if(Auth::user()->role === 1)
+                                                            <a href="{{route('user-role', $user->id)}}">
+                                                                Người dùng
+                                                            </a>
+                                                        @else
                                                             Người dùng
-                                                        </a>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             </td>

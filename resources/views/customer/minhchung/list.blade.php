@@ -36,7 +36,9 @@
                                     <th>Tên tiêu chuẩn</th>
                                     <th>Tên tiêu chí</th>
                                     <th>Xem</th>
+                                    @if(Auth::user()->role === 1)
                                     <th>Hành động</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +58,7 @@
                                             </td>
                                             <td>
                                                 <div>
+                                                    @if(Auth::user()->role === 1)
                                                     <a style="float: left; margin-right: 3px;" href="{{route('minhchung.edit', $minhchung->id)}}" class="btn btn-warning">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </a>
@@ -64,6 +67,7 @@
                                                         {{ csrf_field() }}
                                                         <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                     </form>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
