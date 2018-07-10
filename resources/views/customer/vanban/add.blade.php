@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label for="txtNgayBH" class="control-label col-lg-2">Ngày ban hành</label>
                                     <div class="col-sm-2">
-                                        <input id="txtNgayBH" type="text" placeholder="yyyy/mm/dd" size="16" name="txtNgayBH" class="form-control datepicker" value="{{old('txtNgayBH')}}">
+                                        <input id="txtNgayBH" type="text" placeholder="yyyy/mm/dd" size="16" name="txtNgayBH" class="form-control datepicker" value="{{old('txtNgayBH')}}" autocomplete="off" />
                                     </div>
                                 </div>
 

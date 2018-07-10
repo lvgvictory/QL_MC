@@ -121,7 +121,7 @@ use Carbon\Carbon;
                                             placeholder="yyyy/mm/dd" 
                                             size="16" name="txtNgayBH" 
                                             class="form-control datepicker" 
-                                            value="{{old('txtNgayBH', isset($vanban) ? $date : '')}}" />
+                                            value="{{old('txtNgayBH', isset($vanban) ? $date : '')}}" autocomplete="off"/>
                                     </div>
                                 </div>
 

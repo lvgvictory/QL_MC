@@ -90,3 +90,23 @@ Route::get('get-data', [
     'as' => 'get-data',
     'uses' => 'AjaxController@getDataTieuChi'
 ]);
+
+Route::get('admin/dangky', [
+    'as' => 'dangky',
+    'uses' => 'UserController@getDangKy'
+]);
+
+Route::post('admin/dangky', [
+    'as' => 'dangky',
+    'uses' => 'UserController@postDangKy'
+]);
+
+Route::get('admin/change-password', [
+    'as' => 'change-password',
+    'uses' => 'UserController@getChangePassword'
+]);
+
+Route::post('admin/change-password', [
+    'as' => 'change-password',
+    'uses' => 'UserController@postChangePassword'
+]);

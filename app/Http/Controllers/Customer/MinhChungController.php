@@ -51,6 +51,18 @@ class MinhChungController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,
+            [
+                'sltTenTc' => 'required',
+                'sltTenTieuChi' => 'required',
+                'ten_minh_chung' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'sltTenTieuChi.required' => 'Vui lòng chọn tiêu chí',
+                'ten_minh_chung' => 'Vui lòng nhập tên minh chứng'
+            ]
+        );
         try{
             $id = 0;
             $minhchungById = Minhchung::orderBy('id', 'DESC')->first();
@@ -125,6 +137,18 @@ class MinhChungController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,
+            [
+                'sltTenTc' => 'required',
+                'sltTenTieuChi' => 'required',
+                'ten_minh_chung' => 'required'
+            ],
+            [
+                'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
+                'sltTenTieuChi.required' => 'Vui lòng chọn tiêu chí',
+                'ten_minh_chung' => 'Vui lòng nhập tên minh chứng'
+            ]
+        );
         try{
             $minhchung = Minhchung::findOrFail($id);
 

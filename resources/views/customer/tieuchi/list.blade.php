@@ -65,9 +65,11 @@
                                             </td>
                                             <td>
                                                 <div>
+                                                    @if(Auth::user()->role === 1 || $tieuchi->user_id == Auth::user()->id)
                                                     <a style="float: left; margin-right: 3px;" href="{{route('tieuchi-user.edit', $tieuchi->id)}}" class="btn btn-warning">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </a>
+                                                    @endif
                                                     @if(Auth::user()->role == 1)
                                                         <form method="POST" action="{{route('tieuchi-user.destroy', $tieuchi->id)}}">
                                                             {{ method_field("DELETE")}}

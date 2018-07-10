@@ -15,6 +15,15 @@
                 @endif
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @if(Session::has('flash_message'))
+                    <div class="alert alert-{!!Session::get('flash_level')!!}">
+                        {!!Session::get('flash_message')!!}
+                    </div>
+                @endif
+            </div>
+        </div>
 
        @if(Auth::user()->role == 1)
             <div class="row">
@@ -81,4 +90,11 @@
             </div>
         </div> --}}
     
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div.alert").delay(10000).slideUp();
+        });
+    </script>
 @endsection
