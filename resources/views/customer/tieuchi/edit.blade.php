@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> TIÊU CHÍ</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="index.html">Thống kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('tieuchi-user.index')}}">Tiêu chí</a></li>
                     <li><i class="fa fa-files-o"></i>Cập Nhật</li>
                 </ol>
             </div>
@@ -65,7 +65,10 @@
                                             <option value=""> ---Chọn tiêu chí--- </option>
                                             @if(isset($tieuchis))
                                             @foreach($tieuchis as $item)
-                                                <option value="{{$item->id}}">
+                                                <option 
+                                                    value="{{$item->id}}"
+                                                    {{$item->id == $tieuchi->id ? 'selected' : ''}}
+                                                >
                                                     {{$item->ten_tieu_chi}}
                                                 </option>
                                             @endforeach

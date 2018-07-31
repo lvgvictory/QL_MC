@@ -29,14 +29,24 @@ class AjaxController extends Controller
         }
     }
 
-    public function getDataTieuChi(Request $request1)
+    public function getTieuChiNotNull(Request $request)
     {
         try{
-            $id = $request1->id;
+            $id = $request->id;
             
-            $tieuchi = Tieuchi::findOrFail($id);
+            $tieuchis = Tieuchi::where('tieuchuan_id', $id)
+                                ->whereNull('mo_ta')
+                                ->get();
 
-            return response()->json($tieuchi);
+            $result = '';
+
+            foreach ($tieuchis as $tieuchi) {
+                $result .= '<option value="'.$tieuchi->id.'">
+                                '.$tieuchi->ten_tieu_chi.'
+                            </option>';
+            }
+
+            return $result;
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());

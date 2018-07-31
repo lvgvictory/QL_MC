@@ -88,7 +88,7 @@ Route::post('admin/quyen/{user}', [
 
 Route::get('get-data', [
     'as' => 'get-data',
-    'uses' => 'AjaxController@getDataTieuChi'
+    'uses' => 'AjaxController@getTieuChiNotNull'
 ]);
 
 Route::get('admin/dangky', [
