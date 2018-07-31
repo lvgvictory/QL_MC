@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Tieuchuan;
 use App\Tieuchi;
 use App\Minhchung;
+use Auth;
 
 class TieuChiUserController extends Controller
 {
@@ -79,6 +80,7 @@ class TieuChiUserController extends Controller
             $tieuchi->nhung_ton_tai = $request->treaTonTai;
             $tieuchi->ke_hoach_cai_tien = $request->treaCaiTien;
             $tieuchi->tu_danh_gia = $request->rdDG;
+            $tieuchi->user_id = Auth::user()->id;
             $tieuchi->save();
 
             return redirect()->route('tieuchi-user.index')->with(['flash_level'=>'success','flash_message'=>'Viết bài thành công']);
@@ -163,6 +165,7 @@ class TieuChiUserController extends Controller
             $tieuchi->nhung_ton_tai = $request->treaTonTai;
             $tieuchi->ke_hoach_cai_tien = $request->treaCaiTien;
             $tieuchi->tu_danh_gia = $request->rdDG;
+            $tieuchi->user_id = Auth::user()->id;
             $tieuchi->save();
 
             return redirect()->route('tieuchi-user.index')->with(['flash_level'=>'success','flash_message'=>'Cập nhật thành công']);

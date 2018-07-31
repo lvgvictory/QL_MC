@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Creative - Bootstrap Admin Template@yield('title')</title>
+    <title>Hệ thống</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

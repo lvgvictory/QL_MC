@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> TIÊU CHUẨN</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="index.html">Tiêu chuẩn</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('tieuchuan.index')}}">Tiêu chuẩn</a></li>
                     <li><i class="fa fa-files-o"></i>Cập Nhật</li>
                 </ol>
             </div>

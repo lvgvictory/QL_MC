@@ -42,7 +42,7 @@
                                     @foreach($tieuchis as $tieuchi)
                                         <tr>
                                             <td>{{$i++}}</td>
-                                            <td>{{$tieuchi->ten_tieu_chi}}</td>
+                                            <td class="an-chu">{{$tieuchi->ten_tieu_chi}}</td>
                                             <td>{{$tieuchi->tieuchuan->ten_tieu_chuan}}</td>
                                             <td>
                                                 <a href="{{route('tieuchi.show', $tieuchi->id)}}">Chi tiết</a>
@@ -76,5 +76,23 @@
             $('#tieu-chuan-table').DataTable();
             $("div.alert").delay(3000).slideUp();
         });
+
+        // $(function(){
+        //     $.fn.limit = function($n){
+        //         this.each(function(){
+        //             var allText   = $(this).html();
+        //             var tLength   = $(this).html().length;
+        //             var startText = allText.slice(0,$n);
+        //             if(tLength >= $n){
+        //                 $(this).html(startText+'...');
+        //             }else {
+        //                 $(this).html(startText);
+        //             };
+        //         });
+                
+        //         return this;
+        //     }
+        //     $('.an-chu').limit(80);
+        // });
     </script>
 @endsection

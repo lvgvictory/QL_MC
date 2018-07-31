@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> VĂN BẢN</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="index.html">Thống kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('vanban.index')}}">Văn bản</a></li>
                     <li><i class="fa fa-files-o"></i>Thêm Mới</li>
                 </ol>
             </div>
@@ -89,11 +89,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-lg-2">
+                                    <label for="flDK" class="control-label col-lg-2">
                                         File đính kèm
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="file" id="exampleInputFile" name="flDK" value="{{old('flDK')}}">
+                                        <input type="file" id="flDK" name="flDK" value="{{old('flDK')}}">
                                     </div>
                                 </div>
 
@@ -120,7 +120,7 @@
                     format: 'yyyy/mm/dd'
                 });
             });
-            $("div.alert").delay(5000).slideUp();
+            $("div.alert").delay(10000).slideUp();
         });        
     </script>
 @endsection

@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> TIÊU CHÍ</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="{{route('tieuchuan.index')}}">Thống Kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('tieuchi-user.index')}}">Tiêu chí</a></li>
                     <li><i class="fa fa-files-o"></i>Danh Sách</li>
                 </ol>
             </div>

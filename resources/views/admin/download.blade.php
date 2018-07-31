@@ -20,7 +20,7 @@
         <h5>3. Những tồn tại</h5>
         <p>{!!$tieuchi->nhung_ton_tai!!}</p>
         <h5>4. Kế hoạch cải tiến</h5>
-        <p>{!!$tieuchi->ke_hoac_cai_tien!!}</p>
+        <p>{!!$tieuchi->ke_hoach_cai_tien!!}</p>
         <h5>5. Tự đánh giá: {!!$tieuchi->tu_danh_gia === 1 ? 'Đạt' : 'Không đạt'!!}</h5>
         @php
             if ($tieuchi->tu_danh_gia === 1) {
@@ -37,6 +37,6 @@
 <?php
 
 header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=demo.doc");
+header("Content-Disposition: attachment;Filename=download.doc");
 header("Pragma: no-cache");
 header("Expires: 0");

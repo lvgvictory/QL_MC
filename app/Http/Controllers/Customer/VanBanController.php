@@ -42,6 +42,20 @@ class VanBanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,
+            [
+                'sltTenMC' => 'required',
+                'txtNgayBH' => 'required|date|date_format:"Y/m/d"',
+                'flDK' => 'required'
+            ],
+            [
+                'sltTenMC.required' => 'Vui lòng chọn minh chứng',
+                'txtNgayBH.required' => 'Vui lòng chọn ngày ban hành',
+                'txtNgayBH.date' => 'Ngày ban hành nhập không đúng',
+                'txtNgayBH.date_format'=>'Ngày ban hành nhập không đúng định dạng',
+                'flDK.required'=>'File không được để trống',
+            ]
+        );
         try {
             $file = $request->file('flDK');
             $file_Name = $file->getClientOriginalName();
@@ -111,6 +125,18 @@ class VanBanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,
+            [
+                'sltTenMC' => 'required',
+                'txtNgayBH' => 'required|date|date_format:"Y/m/d"',
+            ],
+            [
+                'sltTenMC.required' => 'Vui lòng chọn minh chứng',
+                'txtNgayBH.required' => 'Vui lòng chọn ngày ban hành',
+                'txtNgayBH.date' => 'Ngày ban hành nhập không đúng',
+                'txtNgayBH.date_format'=>'Ngày ban hành nhập không đúng định dạng',
+            ]
+        );
         try {
             $vanban = Vanban::findOrFail($id);
             $file = $request->file('flDKnew');

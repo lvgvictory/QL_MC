@@ -55,12 +55,12 @@ class MinhChungController extends Controller
             [
                 'sltTenTc' => 'required',
                 'sltTenTieuChi' => 'required',
-                'ten_minh_chung' => 'required'
+                'txtTenMC' => 'required'
             ],
             [
                 'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
                 'sltTenTieuChi.required' => 'Vui lòng chọn tiêu chí',
-                'ten_minh_chung' => 'Vui lòng nhập tên minh chứng'
+                'txtTenMC.required' => 'Vui lòng nhập tên minh chứng'
             ]
         );
         try{
@@ -141,12 +141,12 @@ class MinhChungController extends Controller
             [
                 'sltTenTc' => 'required',
                 'sltTenTieuChi' => 'required',
-                'ten_minh_chung' => 'required'
+                'txtTenMC' => 'required'
             ],
             [
                 'sltTenTc.required' => 'Vui lòng chọn tiêu chuẩn',
                 'sltTenTieuChi.required' => 'Vui lòng chọn tiêu chí',
-                'ten_minh_chung' => 'Vui lòng nhập tên minh chứng'
+                'txtTenMC' => 'Vui lòng nhập tên minh chứng'
             ]
         );
         try{

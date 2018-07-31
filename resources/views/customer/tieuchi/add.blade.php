@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-files-o"></i> TIÊU CHÍ</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="index.html">Thống kê</a></li>
+                    <li><i class="fa fa-home"></i><a href="{{route('tieuchi-user.index')}}">Tiêu chí</a></li>
                     <li><i class="fa fa-files-o"></i>Viết Bài</li>
                 </ol>
             </div>
@@ -171,7 +171,7 @@
                 var id = $(this).val();
                 
                 $.ajax({
-                    url: '/ajax-tieuchi',
+                    url: '/get-data',
                     type: 'GET',
                     data: {id: id},
                     success: function (res) {
@@ -180,19 +180,6 @@
                         //     result += "<li><a href='/single/" + res[i].id + "'>" + res[i].name + "</a></li>";
                         // }
                         $('#sltTenTieuChi').html(res);
-                    }
-                });
-            });
-
-            $('#sltTenTieuChi').change(function() {
-                var id = $(this).val();
-                
-                $.ajax({
-                    url: '/get-data',
-                    type: 'GET',
-                    data: {id: id},
-                    success: function (res) {
-                        console.log(res);
                     }
                 });
             });
